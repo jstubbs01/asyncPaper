@@ -12,7 +12,7 @@ class PaperDAL():
 
     async def create_paper(self, name: str, author: str,   release_year: int):
         new_paper = Paper(name=name,author=author, release_year=release_year)
-        self.db_session.add(new_book)
+        self.db_session.add(new_paper)
         await self.db_session.flush()
 
     async def get_all_papers(self) -> List[Paper]:
