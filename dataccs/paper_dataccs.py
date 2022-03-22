@@ -16,11 +16,11 @@ class PaperDAL():
         await self.db_session.flush()
 
     async def get_evry_paper(self) -> List[Paper]:
-    x = await self.db_session.execute(select(Paper).order_by(Paper.id))
+        x = await self.db_session.execute(select(Paper).order_by(Paper.id))
         return x.scalars().all()
 
     async def update_paper(self, paper_id: int, name: Optional[str], author: Optional[str], 
-    release_year: Optional[int], url: [str]):
+    release_year: Optional[int], url: Optional[str]):
         x = update(Paper).where(Paper.id == paper_id)
         if name:
             x = x.values(name=name)
