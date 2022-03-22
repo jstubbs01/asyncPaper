@@ -9,3 +9,4 @@ class Paper(Base):
     name = Column(String, nullable=False)
     author = Column(String, nullable=False)
     release_year = Column(Integer, nullable=False)
+    url = Column(String, nullable=False)
