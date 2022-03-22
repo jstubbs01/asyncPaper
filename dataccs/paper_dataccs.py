@@ -10,22 +10,22 @@ class PaperDAL():
     def __init__(self, db_session: Session):
         self.db_session = db_session
 
-    async def create_paper(self, name: str, author: str,   release_year: int):
+    async def create_paper(self, name: str, author: str, release_year: int):
         new_paper = Paper(name=name,author=author, release_year=release_year)
         self.db_session.add(new_paper)
         await self.db_session.flush()
 
-    async def get_all_papers(self) -> List[Paper]:
-        q = await self.db_session.execute(select(Paper).order_by(Paper.id))
-        return q.scalars().all()
+    async def get_evry_paper(self) -> List[Paper]:
+    x = await self.db_session.execute(select(Paper).order_by(Paper.id))
+        return x.scalars().all()
 
     async def update_paper(self, paper_id: int, name: Optional[str], author: Optional[str], release_year: Optional[int]):
-        q = update(Paper).where(Paper.id == paper_id)
+        x = update(Paper).where(Paper.id == paper_id)
         if name:
-            q = q.values(name=name)
+            x = x.values(name=name)
         if author:
-            q = q.values(author=author)
+            x = x.values(author=author)
         if release_year:
-            q = q.values(release_year=release_year)
-        q.execution_options(synchronize_session="fetch")
+            x = x.values(release_year=release_year)
+        x.execution_options(synchronize_session="fetch")
         await  self.db_session.execute(q)
