@@ -10,8 +10,8 @@ class PaperDAL():
     def __init__(self, db_session: Session):
         self.db_session = db_session
 
-    async def create_paper(self, name: str, author: str, release_year: int):
-        new_paper = Paper(name=name,author=author, release_year=release_year)
+    async def create_paper(self, name: str, author: str, release_year: int, url: str):
+        new_paper = Paper(name=name,author=author, release_year=release_year, url=url)
         self.db_session.add(new_paper)
         await self.db_session.flush()
 
@@ -19,7 +19,8 @@ class PaperDAL():
     x = await self.db_session.execute(select(Paper).order_by(Paper.id))
         return x.scalars().all()
 
-    async def update_paper(self, paper_id: int, name: Optional[str], author: Optional[str], release_year: Optional[int]):
+    async def update_paper(self, paper_id: int, name: Optional[str], author: Optional[str], 
+    release_year: Optional[int], url: [str]):
         x = update(Paper).where(Paper.id == paper_id)
         if name:
             x = x.values(name=name)
