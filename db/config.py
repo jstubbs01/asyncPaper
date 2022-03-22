@@ -9,5 +9,5 @@ engine = create_async_engine(url, future=True, echo=True)
 
 # make asychronous session for db, witj entities and fields 
 # available even after a commit
-asyncSesh=sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
+asyncSession=sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
 Base=declarative_base()
