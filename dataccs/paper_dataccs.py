@@ -28,4 +28,4 @@ class PaperDAL():
         if release_year:
             x = x.values(release_year=release_year)
         x.execution_options(synchronize_session="fetch")
-        await  self.db_session.execute(q)
+        await  self.db_session.execute(x)
