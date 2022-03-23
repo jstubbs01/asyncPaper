@@ -8,7 +8,7 @@ from db.data_accs.paper_dataccs import PaperDAL
 from db.models.papers import Paper
 
 app = FastAPI()
-
+app.include_router(paper_router.router)
 
 @app.on_event("startup")
 async def startup():
