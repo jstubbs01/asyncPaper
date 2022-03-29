@@ -6,6 +6,7 @@ from fastapi import FastAPI
 from db.config import engine, Base, async_session
 from db.data_accs.paper_dataccs import PaperDAL
 from db.models.papers import Paper
+from db.router import paper_router
 
 app = FastAPI()
 app.include_router(paper_router.router)
